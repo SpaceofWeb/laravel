@@ -50,7 +50,6 @@ let tests = {
                     }
                 },
                 test: (result, status) => {
-                    console.log(result, status);
                     if (status.status !== 404 && status.status != 403 && status.status != 500) {
                         return true;
                     }

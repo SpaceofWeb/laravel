@@ -20,9 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-
 Route::resource('/news', 'NewsController');
-
 
 Route::resource('/post', 'PostController');
 
@@ -30,8 +28,63 @@ Route::resource('/post', 'PostController');
 
 
 
-Route::get('/api/authForm', 'NewsController@authForm');
-Route::post('/api/auth', 'NewsController@auth')->name('apiAuth');
+
+
+
+Route::prefix('/api')->namespace('api')->group(function() {
+
+	Route::get('/', function() {
+		return 'ok';
+	});
+
+
+	Route::post('/auth', 'AuthController@login');
+
+
+  Route::group(['middleware' => 'APIToken'], function() {
+
+    // Route::get('/posts', 'PostController@store');
+    Route::post('/posts', 'PostController@store');
+
+  });
+
+
+
+
+
+
+});
+
+
+
+
+
+
+
+// Route::prefix('/api')->namespace('API')->group(function() {
+
+// 	Route::get('/', function() {
+// 		return 'ok';
+// 	});
+
+
+// 	Route::get('/check', function() {
+// 		return 'ok';
+// 	})->middleware('APIToken');
+
+
+// 	Route::get('/auth', 'AuthController@login');
+// 	Route::post('/auth', 'AuthController@login');
+
+// });
+
+
+
+// Route::get('/api/authForm', 'ApiController@authForm');
+
+// Route::post('/api/auth', 'ApiController@auth')->name('apiAuth');
+
+
 
 // // Route::get('/api/auth', function(Request $request) {
 // // 	// return json_encode(['asd']);

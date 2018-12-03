@@ -37,7 +37,7 @@ window.onload = _ => {
             isStart: false,
             tests: [],
             bearer: '',
-            bearerEnabled: false
+            bearerEnabled: true
         },
 
         methods: {
@@ -61,7 +61,7 @@ window.onload = _ => {
                                 body: null
                             };
 
-                            newTests[cat].items[id].ok = true;
+                            newTests[cat].items[id].ok = false;
                         }
                     }
 

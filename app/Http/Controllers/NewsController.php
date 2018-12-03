@@ -108,23 +108,4 @@ class NewsController extends Controller
 
         return redirect()->route('news.index');
     }
-
-
-    public function authForm()
-    {
-        return view('authForm');
-    }
-
-    public function auth(Request $request)
-    {
-        // return json_encode('null');
-        // return dd($request);
-        if ($request->login == 'admin' 
-            && $request->password == 'sakhalin2018') {
-
-            return response()->json(null, 200);
-        }
-
-        return response()->json('error', 403);
-    }
 }
