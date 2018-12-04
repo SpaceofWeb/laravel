@@ -25,8 +25,8 @@ class APIToken
 
         return response()->json([
             'status'=> true,
-            'message'=> 'Not a valid API token'
-        ]);
+            'message'=> 'unauthorized'
+        ])->setStatusCode(401, 'unauthorized');
     }
 }
 

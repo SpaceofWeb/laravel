@@ -43,9 +43,11 @@ Route::prefix('/api')->namespace('api')->group(function() {
 
   Route::group(['middleware' => 'APIToken'], function() {
 
-    // Route::get('/posts', 'PostController@store');
     Route::post('/posts', 'PostController@store');
 
+    Route::post('/posts/{id}', 'PostController@update');
+
+    Route::delete('/posts/{id}', 'PostController@destroy');
   });
 
 
