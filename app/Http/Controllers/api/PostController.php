@@ -58,17 +58,16 @@ class PostController extends Controller
     }
 
 
-
-    public function update(Request $request, Posts $posts, $id)
+    public function update(Request $request, $id)
     {
         $p = Posts::find($id);
 
-        if ($p === null) {
+        if (!$p) {
           return response()
-            ->json([
-              'status'=> false,
-              'message'=> 'post not found',
-            ])->setStatusCode(404, 'post not found');
+              ->json([
+                'status'=> true,
+                'message'=> 'post not found',
+              ])->setStatusCode(404, 'post not found');
         }
 
 
@@ -77,7 +76,6 @@ class PostController extends Controller
           'anons'=> 'required',
           'text'=> 'required',
           'tags'=> 'required',
-          'image'=> 'required|mimes:jpg,png',
         ]);
 
         if ($v->fails()) {
@@ -104,12 +102,11 @@ class PostController extends Controller
 
         if (!$u) {
           return response()
-            ->json([
-              'status'=> false,
-              'message'=> json([]),
-            ])->setStatusCode(400, 'editing error');
+              ->json([
+                'status'=> false,
+                'message'=> [],
+              ])->setStatusCode(400, 'editing error');
         }
-
 
         return response()
               ->json([
@@ -129,7 +126,6 @@ class PostController extends Controller
         return response()
               ->json([
                 'status'=> true,
-                'post'=> [],
                 'message'=> 'post not found',
               ])->setStatusCode(404, 'post not found');
       }
@@ -139,7 +135,6 @@ class PostController extends Controller
       return response()
             ->json([
               'status'=> true,
-              'post'=> [],
               'message'=> 'successful delete',
             ])->setStatusCode(201, 'successful delete');
     }

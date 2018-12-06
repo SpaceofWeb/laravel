@@ -45,9 +45,11 @@ Route::prefix('/api')->namespace('api')->group(function() {
 
     Route::post('/posts', 'PostController@store');
 
-    Route::post('/posts/{id}', 'PostController@update');
+    Route::post('/posts/{post}', 'PostController@update');
 
-    Route::delete('/posts/{id}', 'PostController@destroy');
+    Route::delete('/posts/{post}', 'PostController@destroy');
+
+    Route::post('/posts/{post}/comments', 'CommentController@store');
   });
 
 

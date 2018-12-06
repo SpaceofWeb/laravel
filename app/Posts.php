@@ -12,4 +12,15 @@ class Posts extends Model
     {
       return $this->hasMany('App\Comments');
     }
+
+
+    static public function exists($id)
+    {
+      $p = Posts::find($id);
+
+      if ($p)
+        return true;
+      else
+        return false;
+    }
 }
