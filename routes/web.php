@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+  return 'https://drive.google.com/drive/folders/1pP1-HiadcRD0rHLHEfjlHa3T5OHcQ80H';
+  return view('welcome');
 });
 
 Auth::routes();
